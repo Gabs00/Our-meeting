@@ -45,6 +45,10 @@ function checkConnections(){
   },30000);
 }
 
+
+/*
+  look into promises are alternatives to using set timeout in func below
+*/
 //Checks if an rtc stream has an attached local stream object, 
 //local stream must attached before signalling can begin 
 //Checks for remote stream, if one is present, no need for resignalling
@@ -79,6 +83,8 @@ function checkIfReady(user){
         }, 15000);
       } else {
         peer.processIce();
+        var src = createVidElements(webrtc.getStream(user));
+        appendToMeeting(src);
         return;
       }
       //Mark this peer as ready to begin signalling
@@ -98,6 +104,13 @@ function createVidElements(user){
   var stream = webrtc.getStream(user);
   var elem = toSrcElem(stream);
   return elem;
+}
+
+function appendToMeeting(element){
+  var elem = document.createElement('video');
+  document.getElementById('meeting-space')
+    .appendChild(elem);
+    elem.appendChild(element);
 }
 
 function getAllUserNames(){

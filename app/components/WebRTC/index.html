@@ -4,8 +4,11 @@
 </head>
 <body>
 
-<video id="me" autoplay></video>
-<video id="other" autoplay></video>
+<div class="meeting">
+  <div id="meeting-space" style="width:400px; height:800px; overflow-y:auto;"></div>
+  <video id="me" autoplay style="float:left;"></video>
+</div>
+
 
 <script src="adapter.js"></script>
 <script src="webrtc.js"></script>
